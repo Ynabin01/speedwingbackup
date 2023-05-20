@@ -57,7 +57,11 @@
                                     </div>
                                     <h4 class="mb-3">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}</h4>
                                     <p>{!! htmlspecialchars_decode($newsevent->long_content ?? '') !!}</p>
-                                    <a class="text-uppercase" href="{{route('FullStoryRead', ['id' => $newsevent->childs->first()->id])}}">Read More <i class="bi bi-arrow-right"></i></a>
+                                    <a class="text-uppercase" href="@if (@isset($newsevent->childs->first()->id))
+                                        {{route('FullStoryRead', ['id' => $newsevent->childs->first()->id])}}
+                                    @else
+                                        #
+                                    @endif ">Read More <i class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

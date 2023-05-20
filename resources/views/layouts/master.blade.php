@@ -203,7 +203,11 @@ $seo = $job;
                     </div>
                     @else
                     <a href=" @if ($menu->nav_name == "news" || $menu->nav_name == "job-seeker")
+                        @if(@isset($menu->childs->first()->nav_name))
                         /{{ $menu->nav_name }}/{{ $menu->childs->first()->nav_name }}
+                        @else
+                        #                            
+                        @endif
                     @else
                     /{{ $menu->nav_name }}
                     @endif "
