@@ -32,7 +32,7 @@
 <section class="section-padding bg-light-white">
     <div class="container">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Chairman Message</h5>
+            <h5 class="fw-bold text-primary text-uppercase">{{ $messagechairman->caption ?? '' }}</h5>
             <!-- <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1> -->
         </div>
         <div class="massagefromch">
@@ -46,7 +46,7 @@
                         <figure class="image-alignment left">
                             <img src="{{ $messagechairman->banner_image ?? '' }}" class="image-fit" alt="">
                         </figure>
-                        <h3 class="fw-600 text-blue">{{ $messagechairman->caption ?? '' }}</h3>
+                        {{-- <h3 class="fw-600 text-blue">{{ $messagechairman->caption ?? '' }}</h3> --}}
                         <p class="fw-500 mb-xl-10">{!! htmlspecialchars_decode($messagechairman->short_content ?? '') !!}</p>
                         <p class="fw-500 mb-xl-10">{!! htmlspecialchars_decode($messagechairman->long_content ?? '') !!}</p>
                     </div>
