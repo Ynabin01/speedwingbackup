@@ -435,6 +435,9 @@ class HomeController extends Controller
                 else if(Navigation::all()->where('nav_name',$submenu)->where('page_type','Chart')->count()>0){
                     $subcategory_type = Navigation::all()->where('nav_name',$submenu)->where('page_type','Chart')->first()->page_type;//slug/slug2(except group)
                 }
+                else if(Navigation::all()->where('nav_name',$submenu)->where('page_type','Message')->count()>0){
+                    $subcategory_type = Navigation::all()->where('nav_name',$submenu)->where('page_type','Message')->first()->page_type;//slug/slug2(except group)
+                }
                 else if(Navigation::all()->where('nav_name',$submenu)->where('page_type','Team')->count()>0){
                     $subcategory_type = Navigation::all()->where('nav_name',$submenu)->where('page_type','Team')->first()->page_type;//slug/slug2(except group)
                 }
@@ -520,9 +523,14 @@ class HomeController extends Controller
             
             $orientation = Navigation::find($subcategory_id);
             // return $normal;
-            return view("website.orientation")->with(['orientation'=>$orientation,'message'=>$message,'normal'=>$normal,'jobs'=>$jobs,'menus'=>$menus,'sliders'=>$sliders,'about'=>$About,'global_setting'=>$global_setting,'slug1'=>$slug1,'slug2'=>$slug2]);
+            return view("website.orientation")->with(['orientation'=>$orientation,'message'=>$message,'jobs'=>$jobs,'menus'=>$menus,'sliders'=>$sliders,'about'=>$About,'global_setting'=>$global_setting,'slug1'=>$slug1,'slug2'=>$slug2]);
         }
-    
+        elseif($subcategory_type == "Message"){
+                
+            $messagechairman = Navigation::find($subcategory_id);
+            // return $normal;
+            return view("website.messagechairman")->with(['messagechairman'=>$messagechairman,'jobs'=>$jobs,'menus'=>$menus,'sliders'=>$sliders,'about'=>$About,'global_setting'=>$global_setting,'slug1'=>$slug1,'slug2'=>$slug2]);
+        }
         elseif($subcategory_type == "Chart"){
             
             $chart = Navigation::find($subcategory_id);
