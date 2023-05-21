@@ -14,7 +14,7 @@
                     <h4 class="mb-3">{{ $serv->caption ?? '' }}</h4>
                     <p class="m-0">{{ $serv->short_content ?? '' }}
                     </p>
-                    <a class="btn btn-lg btn-primary rounded" href="">
+                    <a class="btn btn-lg btn-primary rounded" href="/our-services/our-services-one">
                         <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
