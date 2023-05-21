@@ -85,6 +85,16 @@ $seo = $job;
     <link href="/website/css/style.css" rel="stylesheet">
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QL0H41DW59"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QL0H41DW59');
+</script>
+
 <body>
     @if (Session::has('contact'))
     <script>
@@ -190,29 +200,29 @@ $seo = $job;
             <div class="collapse navbar-collapse" id="navbarCollapse"> 
                 <div class="navbar-nav ms-auto py-0">
                     @foreach($menus as $menu)
-                    @if ($menu->childs->count() > 0 && $menu->nav_name != "news" && $menu->nav_name != "job-seeker")
-                    <div class="nav-item dropdown">
-                        <a href="/{{ $menu->nav_name }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{
-                            $menu->caption }}</a>
-                        <div class="dropdown-menu m-0">
-                            @foreach ($menu->childs as $submenu)
-                            <a href="/{{ $menu->nav_name }}/{{ $submenu->nav_name }}" class="dropdown-item">{{
-                                $submenu->caption }}</a>
-                            @endforeach
+                        @if ($menu->childs->count() > 0 && $menu->nav_name != "news" && $menu->nav_name != "job-seeker")
+                        <div class="nav-item dropdown">
+                            <a href="/{{ $menu->nav_name }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{
+                                $menu->caption }}</a>
+                            <div class="dropdown-menu m-0">
+                                @foreach ($menu->childs as $submenu)
+                                <a href="/{{ $menu->nav_name }}/{{ $submenu->nav_name }}" class="dropdown-item">{{
+                                    $submenu->caption }}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    @else
-                    <a href=" @if ($menu->nav_name == "news" || $menu->nav_name == "job-seeker")
-                        @if(@isset($menu->childs->first()->nav_name))
-                        /{{ $menu->nav_name }}/{{ $menu->childs->first()->nav_name }}
                         @else
-                        #                            
+                        <a href=" @if ($menu->nav_name == "news" || $menu->nav_name == "job-seeker")
+                            @if(@isset($menu->childs->first()->nav_name))
+                            /{{ $menu->nav_name }}/{{ $menu->childs->first()->nav_name }}
+                            @else
+                            #                            
+                            @endif
+                        @else
+                        /{{ $menu->nav_name }}
+                        @endif "
+                            class="d nav-item nav-link{{ $menu['active'] ? ' active' : '' }}">{{ $menu->caption }}</a>
                         @endif
-                    @else
-                    /{{ $menu->nav_name }}
-                    @endif "
-                        class="d nav-item nav-link{{ $menu['active'] ? ' active' : '' }}">{{ $menu->caption }}</a>
-                    @endif
                     @endforeach
                     <a href="contact" class="nav-item nav-link">Contact</a>
                     {{-- <a href="team" class="nav-item nav-link">Team</a> --}}

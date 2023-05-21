@@ -68,7 +68,7 @@
                         <div class="d-flex rounded overflow-hidden mb-3">
                             <img class="img-fluid" src="{{ $newsevent->banner_image ?? '' }}"
                                 style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="blog-detail.html" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}
+                            <a href="#" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}
                             </a>
                         </div>
                         @endforeach

@@ -40,36 +40,37 @@
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            @foreach ($newsevents as $newsevent)
-                <!-- Blog list Start -->
+           
+            <!-- Blog list Start -->
                 <div class="col-lg-8">
-                    <div class="row g-5">
-                        <div class="col-md-6 wow slideInUp" data-wow-delay="0.1s">
-                            <div class="blog-item bg-light rounded overflow-hidden">
-                                <div class="blog-img position-relative overflow-hidden">
-                                    <img class="img-fluid" src="{{ $newsevent->banner_image ?? '' }}" alt="">
-                                    <!-- <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href="">Web Design</a> -->
-                                </div>
-                                <div class="p-4">
-                                    <div class="d-flex mb-3">
-                                        <small class="me-3"><i class="far fa-user text-primary me-2"></i>{!! htmlspecialchars_decode($newsevent->caption ?? '') !!}</small>
-                                        <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $newsevent->icon_image_caption ?? '' }}</small> 
+                    @foreach ($newsevents as $newsevent)
+                        <div class="row g-5">
+                            <div class="col-md-6 wow slideInUp" data-wow-delay="0.1s">
+                                <div class="blog-item bg-light rounded overflow-hidden">
+                                    <div class="blog-img position-relative overflow-hidden">
+                                        <img class="img-fluid" src="{{ $newsevent->banner_image ?? '' }}" alt="">
+                                        <!-- <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href="">Web Design</a> -->
                                     </div>
-                                    <h4 class="mb-3">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}</h4>
-                                    <p>{!! htmlspecialchars_decode($newsevent->long_content ?? '') !!}</p>
-                                    <a class="text-uppercase" href="@if (@isset($newsevent->childs->first()->id))
-                                        {{route('FullStoryRead', ['id' => $newsevent->childs->first()->id])}}
-                                    @else
-                                        #
-                                    @endif ">Read More <i class="bi bi-arrow-right"></i></a>
+                                    <div class="p-4">
+                                        <div class="d-flex mb-3">
+                                            <small class="me-3"><i class="far fa-user text-primary me-2"></i>{!! htmlspecialchars_decode($newsevent->caption ?? '') !!}</small>
+                                            <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $newsevent->icon_image_caption ?? '' }}</small> 
+                                        </div>
+                                        <h4 class="mb-3">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}</h4>
+                                        <p>{!! htmlspecialchars_decode($newsevent->long_content ?? '') !!}</p>
+                                        <a class="text-uppercase" href="@if (@isset($newsevent->childs->first()->id))
+                                            {{route('FullStoryRead', ['id' => $newsevent->childs->first()->id])}}
+                                        @else
+                                            #
+                                        @endif ">Read More <i class="bi bi-arrow-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                <!-- Blog list End -->
-            @endforeach
-            
+                    <!-- Blog list End -->
+             
             <!-- Sidebar Start -->
             <div class="col-lg-4">
                 <!-- Search Form Start -->
@@ -104,17 +105,19 @@
                     <div class="section-title section-title-sm position-relative pb-3 mb-4">
                         <h3 class="mb-0">Recent Post</h3>
                     </div>
-                    @foreach ($newsevents as $index => $newsevent)
-                    @if ($index >= 5){{-- Limit the loop to 5 iterations --}}
-                        @break
+                    @if (isset($newsevents))
+                        @foreach ($newsevents as $index => $newsevent)
+                        @if ($index >= 5){{-- Limit the loop to 5 iterations --}}
+                            @break
+                        @endif
+                        <div class="d-flex rounded overflow-hidden mb-3">
+                            <img class="img-fluid" src="{{ $newsevent->banner_image ?? '' }}"
+                                style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                            <a href="blog-detail.html" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}
+                            </a>
+                        </div>
+                        @endforeach
                     @endif
-                    <div class="d-flex rounded overflow-hidden mb-3">
-                        <img class="img-fluid" src="{{ $newsevent->banner_image ?? '' }}"
-                            style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="blog-detail.html" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{!! htmlspecialchars_decode($newsevent->short_content ?? '') !!}
-                        </a>
-                    </div>
-                    @endforeach
                 </div>
                 
                 <!-- Recent Post End -->
